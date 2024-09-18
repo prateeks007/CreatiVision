@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>AI Video Generator</h1>
+    <form id="videoForm">
+        <input type="file" id="productImage" name="productImage" accept="image/*" required>
+        <input type="text" id="offer" name="offer" placeholder="Promotional Offer" required>
+        <input type="text" id="theme" name="theme" placeholder="Theme" required>
+        <input type="text" id="colorPalette" name="colorPalette" placeholder="Color Palette (comma-separated)" required>
+        <input type="text" id="size" name="size" placeholder="Size (e.g., 1200x628)" required>
+        <input type="number" id="duration" name="duration" placeholder="Video Duration (seconds)" required>
+        <button type="submit">Generate Video</button>
+    </form>
+    <div id="result"></div>
+    <script src="{{ url_for('static', filename='js/video.js') }}"></script>
+</body>
+</html>

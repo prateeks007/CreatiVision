@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Banner Prompt Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>AI Banner Prompt Generator</h1>
+    <form id="bannerForm">
+        <input type="file" id="productImage" name="productImage" accept="image/*" required>
+        <input type="text" id="offer" name="offer" placeholder="Promotional Offer" required>
+        <input type="text" id="theme" name="theme" placeholder="Theme" required>
+        <input type="text" id="colorPalette" name="colorPalette" placeholder="Color Palette (comma-separated)" required>
+        <button type="submit">Generate Prompt</button>
+    </form>
+    <div id="result"></div>
+    <script src="{{ url_for('static', filename='js/banner.js') }}"></script>
+</body>
+</html>

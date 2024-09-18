@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^5.0.8"
+  }
+}

@@ -1,0 +1,7 @@
+Flask
+Pillow
+google-generativeai
+moviepy
+grpcio
+google-cloud-aiplatform
+python-dotenv
