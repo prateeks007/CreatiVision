@@ -3,7 +3,7 @@
     <div class="animated-bg"></div>
     <header class="bg-opacity-90 bg-surface text-on-surface p-4 shadow-md z-10">
       <div class="container mx-auto flex items-center justify-between">
-        <h1 class="text-2xl font-bold text-primary">AI Content Generator</h1>
+        <h1 class="text-2xl font-bold text-primary">CreatiVision</h1>
         <nav class="flex-grow flex justify-center">
           <ul class="flex space-x-8">
             <li><router-link to="/" class="nav-link text-lg">Home</router-link></li>

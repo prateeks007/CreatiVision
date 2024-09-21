@@ -1,6 +1,6 @@
-# 🎨🤖 AI Promo Wizard: Your Marketing Magician! 🧙‍♂️✨
+# 🎨🤖 CreatiVision: Your AI-Powered Marketing Magician! 🧙‍♂️✨
 
-Welcome to the most magical tool in your marketing cauldron! 🧪 AI Promo Wizard is here to turn your boring product images into dazzling banners and videos faster than you can say "abracadabra"!
+Welcome to CreatiVision, the most magical tool in your marketing cauldron! 🧪 Created for the GenAI Exchange Hackathon, CreatiVision is here to turn your product images into dazzling banners and videos faster than you can say "abracadabra"!
 
 ## 🌟 What's This Sorcery?
 
@@ -31,7 +31,7 @@ And _ALAKAZAM!_ 💥 Out comes a stunning banner or video that'll make your cust
 5. 🔮 Specify your desired output
 6. 🥁 Click "Generate" and... TADAA! 🎉
 
-## 🦄 Why Use AI Promo Wizard?
+## 🦄 Why Use CreatiVision?
 
 Because life's too short for boring promotions! Plus, think of all the time you'll save not wrestling with design software. Use that time to practice your victory dance for when sales start rolling in! 💃🕺
 
@@ -45,4 +45,8 @@ What are you waiting for? Dive in and let's turn those products into promo gold!
 
 Remember: With great power comes great responsibility... to create awesome promotions! 🦸‍♀️🦸‍♂️
 
-Now go forth and dazzle the world! ✨🌟💫
+## 🏆 About the GenAI Exchange Hackathon
+
+CreatiVision is proudly developed as part of the GenAI Exchange Hackathon, showcasing the power of generative AI in revolutionizing marketing and content creation.
+
+Now go forth and dazzle the world with CreatiVision! ✨🌟💫

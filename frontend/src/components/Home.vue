@@ -1,6 +1,6 @@
 <template>
   <div class="home container mx-auto p-8 text-center">
-    <h2 class="text-5xl font-bold mb-4 text-gradient">Welcome to AI Content Generator</h2>
+    <h2 class="text-5xl font-bold mb-4 text-gradient">Welcome to CreatiVision</h2>
     <p class="text-xl mb-12 text-text-light">Create stunning banners and videos with the power of AI.</p>
     <div class="features grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="feature bg-surface bg-opacity-80 rounded-lg p-8 shadow-lg backdrop-filter backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
