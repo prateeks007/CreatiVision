@@ -1,17 +1,17 @@
 <template>
-  <div class="home container">
-    <h2>Welcome to AI Content Generator</h2>
-    <p>Create stunning banners and videos with the power of AI.</p>
-    <div class="features">
-      <div class="feature">
-        <h3>Banner Generator</h3>
-        <p>Create eye-catching banners for your marketing campaigns.</p>
-        <router-link to="/banner" class="btn">Get Started</router-link>
+  <div class="home container mx-auto p-8 text-center">
+    <h2 class="text-5xl font-bold mb-4 text-gradient">Welcome to AI Content Generator</h2>
+    <p class="text-xl mb-12 text-text-light">Create stunning banners and videos with the power of AI.</p>
+    <div class="features grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="feature bg-surface bg-opacity-80 rounded-lg p-8 shadow-lg backdrop-filter backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
+        <h3 class="text-2xl font-semibold text-primary mb-4">Banner Generator</h3>
+        <p class="text-text-light mb-6">Create eye-catching banners for your marketing campaigns.</p>
+        <router-link to="/banner" class="btn-primary">Get Started</router-link>
       </div>
-      <div class="feature">
-        <h3>Video Generator</h3>
-        <p>Generate engaging videos to promote your products or services.</p>
-        <router-link to="/video" class="btn">Get Started</router-link>
+      <div class="feature bg-surface bg-opacity-80 rounded-lg p-8 shadow-lg backdrop-filter backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
+        <h3 class="text-2xl font-semibold text-primary mb-4">Video Generator</h3>
+        <p class="text-text-light mb-6">Generate engaging videos to promote your products or services.</p>
+        <router-link to="/video" class="btn-primary">Get Started</router-link>
       </div>
     </div>
   </div>
@@ -24,66 +24,17 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  text-align: center;
+.text-gradient {
+  background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-h2 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
+.btn-primary {
+  @apply inline-block bg-primary text-white rounded-full py-2 px-6 font-semibold transition-all duration-300;
 }
 
-p {
-  color: var(--text-color);
-}
-
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 2rem;
-}
-
-.feature {
-  flex-basis: calc(50% - 1rem);
-  padding: 1.5rem;
-  background-color: var(--container-bg);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-  margin-bottom: 1rem;
-}
-
-.feature:hover {
-  transform: translateY(-5px);
-}
-
-h3 {
-  color: var(--secondary-color);
-}
-
-.feature p {
-  color: var(--text-color);
-}
-
-.btn {
-  display: inline-block;
-  background-color: var(--secondary-color);
-  color: var(--header-color);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-top: 1rem;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: var(--primary-color);
-}
-
-@media (max-width: 768px) {
-  .feature {
-    flex-basis: 100%;
-  }
+.btn-primary:hover {
+  @apply bg-secondary shadow-lg;
 }
 </style>

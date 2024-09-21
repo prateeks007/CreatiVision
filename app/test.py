@@ -3,22 +3,18 @@ from app.banner import generate_banner
 from app.utils import save_uploaded_file, allowed_file
 import os
 
-def generate_and_save_banner(file, offer, theme, color_palette):
-    if not allowed_file(file.filename):
-        return {'error': 'Invalid file type'}
+def generate_and_save_banner(files, offer, theme, color_palette):
+    for file in files:
+        if not allowed_file(file.filename):
+            return {'error': 'Invalid file type'}
 
-    filename = save_uploaded_file(file)
+    filenames = [save_uploaded_file(file) for file in files]
     
     # Generate banner prompt
-    banner_prompt = generate_banner(filename, offer, theme, color_palette)
+    banner_prompt = generate_banner(filenames, offer, theme, color_palette)
 
     # Login to Hugging Face
     login(token=os.getenv('HUGGING_FACE_API_KEY'))
-
-    # Specify the model you want to use
-    # model_name = "black-forest-labs/FLUX.1-dev"  # You can change this to any supported model
-   
-    # model_name = "stabilityai/stable-diffusion-2"
 
     # Initialize the client with the specific model
     client = InferenceClient()

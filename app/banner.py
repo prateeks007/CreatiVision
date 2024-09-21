@@ -5,41 +5,67 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def generate_banner(filename, offer, theme, color_palette):
+def generate_banner(filenames, offer, theme, color_palette):
     logging.info(f"Generating banner prompt for offer: {offer}")
     genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 
-    prompt = f"""Create a detailed input for a text-to-image model for a promotional banner design. 
-    Product: '{filename}' (assume the product image is available and should remain unchanged).
-    Offer: {offer}. 
-    Theme: {theme}. 
-    Color Palette: {', '.join(color_palette)}.
+    # Define product_name before using it
+    product_name = "Default Product"  # Replace with actual logic to get product name
+    
+    # Create a list to hold product descriptions
+    product_descriptions = []
+    
+    for filename in filenames:
+        # Extract product name from filename
+        
+        # Generate a brief description of the product image details for multiple images
+        initial_prompt = f"Provide key details about the product image '{product_name}' (e.g., type of packaging, material, branding, etc.) for the following images: {', '.join(filenames)}."
+        model = genai.GenerativeModel('models/gemini-pro')
+        response = model.generate_content(initial_prompt)
+        product_image_details = response.text.strip()  # Get the product image details
 
-    Instructions:
-    - The banner should be visually appealing and relevant to an Indian audience. 
-    - Only modify the background, the color of the product (if applicable), the offer display, and the theme elements. 
-    - **Do not change the product image itself; it should remain as it is in the original image.**
-    - Make sure the response does not have any double quotes. 
-    - Provide text for the banner (e.g., taglines, offers, etc.).
+        product_description = f"""
+        - **Image Details:** {product_image_details}  # Use the product image details
+        - **Image:** {filename} (assume the product image is available and should remain unchanged)
+        - **Type:** [Specify the type, e.g., Snack, Beverage, etc.]
+        """
+        product_descriptions.append(product_description)
 
-    Negative prompt: Do not alter the product packaging or branding.  
+    # Combine all product descriptions into a single string
+    products_info = "\n".join(product_descriptions)
+    print(products_info)
 
+    # Construct the prompt with detailed product information
+    prompt = f"""
+    Design a visually appealing promotional banner for an Indian audience.
 
-    Example Output: 
-    ## Promotional Banner Design Input 
-    Product: ... (product image description, e.g., "A bag of Lays potato chips")
-    Offer: ... 
-    Theme: ... 
-    Color Palette: ...
-    Banner Design Details: ... (detailed instructions for the banner)
+    Theme: {theme}
+    Color Palette: {", ".join(color_palette)}
+    Offer: {offer}
+
+    Products:
+    {products_info} 
+
+    ## Banner Elements:
+
+    - **Main Heading:** [Provide a catchy main heading relevant to the theme and offer]
+    - **Product Taglines:** [Provide engaging taglines for each product, relating them to the theme]
+    - **Offer Display:** [Clearly display the offer details]
+    - **Call to Action:** [Include a compelling call to action]
+
+    ## Image Instructions:
+
+    - Use high-quality product images (assume images are provided). 
+    - Do not alter the product images themselves.
+    - Background: Design a background that complements the products and theme.
+    - Ensure the banner is culturally appropriate and visually appealing to an Indian audience. 
+
+    ## Important:
+
+    - Do not alter product packaging or branding.
     """
 
-    # print([i for i in genai.list_models()])
-    model = genai.GenerativeModel('models/gemini-pro')
     response = model.generate_content(prompt)
-
-    # Process the response
     generated_text = response.text
-
     print(generated_text)
     return generated_text

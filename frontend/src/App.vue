@@ -1,22 +1,25 @@
 <template>
-  <div id="app" :class="{ 'dark-mode': isDarkMode }">
-    <header>
-      <div class="header-content">
-        <h1>AI Content Generator</h1>
-        <nav>
-          <router-link to="/" exact>Home</router-link>
-          <router-link to="/banner">Banner</router-link>
-          <router-link to="/video">Video</router-link>
+  <div id="app" class="min-h-screen flex flex-col" :class="{ 'dark': isDarkMode }">
+    <div class="animated-bg"></div>
+    <header class="bg-opacity-90 bg-surface text-on-surface p-4 shadow-md z-10">
+      <div class="container mx-auto flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-primary">AI Content Generator</h1>
+        <nav class="flex-grow flex justify-center">
+          <ul class="flex space-x-8">
+            <li><router-link to="/" class="nav-link text-lg">Home</router-link></li>
+            <li><router-link to="/banner" class="nav-link text-lg">Banner</router-link></li>
+            <li><router-link to="/video" class="nav-link text-lg">Video</router-link></li>
+          </ul>
         </nav>
-        <button @click="toggleDarkMode" class="dark-mode-toggle">
+        <button @click="toggleDarkMode" class="text-2xl transition-transform transform hover:scale-110">
           {{ isDarkMode ? '☀️' : '🌙' }}
         </button>
       </div>
     </header>
-    <main>
+    <main class="flex-grow container mx-auto p-4 z-10">
       <router-view></router-view>
     </main>
-    <footer>
+    <footer class="bg-opacity-90 bg-surface text-on-surface text-center p-4 z-10">
       <p>&copy; Gemini AI Hackathon</p>
     </footer>
   </div>
@@ -27,157 +30,96 @@ export default {
   name: 'App',
   data() {
     return {
-      isDarkMode: false
+      isDarkMode: true
     }
   },
   methods: {
     toggleDarkMode() {
-      this.isDarkMode = !this.isDarkMode;
-      localStorage.setItem('darkMode', this.isDarkMode);
+      this.isDarkMode = !this.isDarkMode
+      localStorage.setItem('darkMode', this.isDarkMode)
     }
   },
   mounted() {
-    this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+    this.isDarkMode = localStorage.getItem('darkMode') === 'true'
   }
 }
 </script>
 
 <style>
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --background-color: #f5f5f5;
-  --text-color: #333;
-  --header-color: #fff;
-  --container-bg: #ffffff;
+  --color-primary: #4f46e5;
+  --color-secondary: #818cf8;
+  --color-background: #f3f4f6;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
 }
 
-.dark-mode {
-  --primary-color: #2980b9;
-  --secondary-color: #27ae60;
-  --background-color: #121212;
-  --text-color: #f5f5f5;
-  --header-color: #ecf0f1;
-  --container-bg: #1e1e1e;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Roboto', Arial, sans-serif;
+.dark {
+  --color-primary: #818cf8;
+  --color-secondary: #4f46e5;
+  --color-background: #111827;
+  --color-surface: #1f2937;
+  --color-text: #f3f4f6;
+  --color-text-light: #9ca3af;
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
   transition: background-color 0.3s, color 0.3s;
 }
 
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color);
-}
-
-header {
-  background-color: var(--primary-color);
-  color: var(--header-color);
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-nav {
-  display: flex;
-  gap: 1rem;
-}
-
-nav a {
-  color: var(--header-color);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-nav a:hover, nav a.router-link-active {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-main {
-  flex-grow: 1;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  box-sizing: border-box;
+  height: 100%;
+  background: linear-gradient(-45deg, var(--color-primary), var(--color-secondary), var(--color-background), var(--color-surface));
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .container {
-  background-color: var(--container-bg);
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--header-color);
-}
-
-footer {
-  background-color: var(--primary-color);
-  color: var(--header-color);
-  text-align: center;
-  padding: 1rem;
-  margin-top: auto;
-}
-
-button {
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #27ae60;
-}
-
-input[type="text"],
-input[type="file"] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  margin-bottom: 1rem;
 }
 
-.dark-mode input[type="text"],
-.dark-mode input[type="file"] {
-  background-color: #34495e;
-  color: #ecf0f1;
-  border-color: #7f8c8d;
+.nav-link {
+  color: var(--color-text-light);
+  transition: color 0.3s;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link:hover, .nav-link.router-link-active {
+  color: var(--color-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.nav-link:hover::after, .nav-link.router-link-active::after {
+  transform: scaleX(1);
 }
 </style>

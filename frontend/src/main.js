@@ -1,17 +1,10 @@
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
-import Home from "./components/Home.vue";
-import BannerGenerator from "./components/BannerGenerator.vue";
-import VideoGenerator from "./components/VideoGenerator.vue";
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [
-    { path: "/", component: Home },
-    { path: "/banner", component: BannerGenerator },
-    { path: "/video", component: VideoGenerator },
-  ],
-});
-
-createApp(App).use(router).mount("#app");
+import router from "./router"; // Import the router
+import "./global.css"; // Import global CSS
+// import Home from "./components/Home.vue";
+import "./assets/styles.css"; // Import Tailwind CSS
+// import VideoGenerator from "./components/VideoGenerator.vue";
+const app = createApp(App);
+app.use(router); // Use the router
+app.mount("#app");
