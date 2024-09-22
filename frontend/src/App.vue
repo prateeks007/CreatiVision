@@ -3,25 +3,37 @@
     <div class="animated-bg"></div>
     <header class="bg-opacity-90 bg-surface text-on-surface p-4 shadow-md z-10">
       <div class="container mx-auto flex items-center justify-between">
-        <h1 class="text-2xl font-bold text-primary">CreatiVision</h1>
-        <nav class="flex-grow flex justify-center">
-          <ul class="flex space-x-8">
+        <h1 class="text-2xl font-bold text-primary flex-shrink-0">CreatiVision</h1>
+        <nav class="flex-grow flex justify-center -ml-[120px]">
+          <ul class="flex space-x-6">
             <li><router-link to="/" class="nav-link text-lg">Home</router-link></li>
             <li><router-link to="/banner" class="nav-link text-lg">Banner</router-link></li>
             <li><router-link to="/video" class="nav-link text-lg">Video</router-link></li>
           </ul>
         </nav>
-        <button @click="toggleDarkMode" class="text-2xl transition-transform transform hover:scale-110">
-          {{ isDarkMode ? '☀️' : '🌙' }}
-        </button>
+        <div class="flex items-center flex-shrink-0">
+          <button @click="toggleDarkMode" class="text-2xl transition-transform transform hover:scale-110">
+            {{ isDarkMode ? '☀️' : '🌙' }}
+          </button>
+          <button class="md:hidden ml-4" @click="toggleMobileMenu">
+            ☰
+          </button>
+        </div>
       </div>
+      <nav v-if="isMobileMenuOpen" class="md:hidden mt-4">
+        <ul class="flex flex-col space-y-2">
+          <li><router-link to="/" class="nav-link text-lg block" @click="closeMobileMenu">Home</router-link></li>
+          <li><router-link to="/banner" class="nav-link text-lg block" @click="closeMobileMenu">Banner</router-link></li>
+          <li><router-link to="/video" class="nav-link text-lg block" @click="closeMobileMenu">Video</router-link></li>
+        </ul>
+      </nav>
     </header>
     <main class="flex-grow container mx-auto p-4 z-10">
       <router-view></router-view>
     </main>
-    <footer class="bg-opacity-90 bg-surface text-on-surface text-center p-4 z-10">
+    <!-- <footer class="bg-opacity-90 bg-surface text-on-surface text-center p-4 z-10">
       <p>&copy; Gemini AI Hackathon</p>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -30,13 +42,20 @@ export default {
   name: 'App',
   data() {
     return {
-      isDarkMode: true
+      isDarkMode: true,
+      isMobileMenuOpen: false
     }
   },
   methods: {
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode
       localStorage.setItem('darkMode', this.isDarkMode)
+    },
+    toggleMobileMenu() {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen
+    },
+    closeMobileMenu() {
+      this.isMobileMenuOpen = false
     }
   },
   mounted() {

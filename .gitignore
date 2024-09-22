@@ -122,3 +122,6 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+
+# Ignore Google Cloud credentials file
+gen-lang-client-0497992847-2f439cfa2d49.json
