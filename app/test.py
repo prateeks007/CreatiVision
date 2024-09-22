@@ -4,13 +4,13 @@ from app.utils import save_uploaded_file, allowed_file
 import os
 
 def generate_and_save_banner(files, offer, theme, color_palette):
+    filenames = []
     for file in files:
         if not allowed_file(file.filename):
             return {'error': 'Invalid file type'}
-
-    filenames = [save_uploaded_file(file) for file in files]
+        filenames.append(save_uploaded_file(file))
     
-    # Generate banner prompt
+    # Generate banner prompt with analyzed image data
     banner_prompt = generate_banner(filenames, offer, theme, color_palette)
 
     # Login to Hugging Face
