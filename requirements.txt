@@ -5,3 +5,4 @@ moviepy
 grpcio
 google-cloud-aiplatform
 python-dotenv
+gunicorn
