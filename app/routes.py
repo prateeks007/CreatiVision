@@ -14,15 +14,28 @@ def index():
 
 @app.route('/generate_banner', methods=['POST'])
 def generate_banner_route():
-    files = request.files.getlist('productImages')  # Get multiple files
+    files = request.files.getlist('productImages')
     offer = request.form.get('offer')
     theme = request.form.get('theme')
     color_palette = request.form.get('colorPalette').split(',')
+    size = request.form.get('size')
+    format = request.form.get('format', 'PNG')
 
     if not files or not offer or not theme or not color_palette:
         return jsonify({'error': 'Missing required fields'}), 400
 
-    result = generate_and_save_banner(files, offer, theme, color_palette)
+    banner_params = {
+        'files': files,
+        'offer': offer,
+        'theme': theme,
+        'color_palette': color_palette,
+        'format': format
+    }
+
+    if size:
+        banner_params['size'] = tuple(map(int, size.split('x')))
+
+    result = generate_and_save_banner(**banner_params)
     return jsonify(result)
 
 @app.route('/generate_video', methods=['POST'])

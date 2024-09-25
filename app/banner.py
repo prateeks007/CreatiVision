@@ -2,7 +2,7 @@ import google.generativeai as genai
 import logging
 import os
 from dotenv import load_dotenv
-from app.vision_test import analyze_image
+from app.analyze_image import analyze_image
 
 load_dotenv()
 
@@ -12,12 +12,8 @@ def generate_banner(filenames, offer, theme, color_palette):
     product_descriptions = []
     for filename in filenames:
         image_analysis = analyze_image(filename)
-        print(image_analysis)
-        product_description = f"""
-        Product: {image_analysis['labels'][0]}
-        Color: {image_analysis['dominant_color']}
-        Key features: {', '.join(image_analysis['labels'][1:3])}
-        """
+        main_product = image_analysis['labels'][0]  # Get the main product label
+        product_description = f"Product: {main_product}"
         product_descriptions.append(product_description)
 
     products_info = "\n".join(product_descriptions)
@@ -36,7 +32,7 @@ def generate_banner(filenames, offer, theme, color_palette):
 
     Banner Elements:
     1. Main Heading: Create a clear headline incorporating the theme "{theme}".
-    2. Product Showcase: Display the products prominently.
+    2. Product Showcase: Prominently display the main product(s): {', '.join([desc.split(': ')[1] for desc in product_descriptions])}.
     3. Offer Display: Present the offer "{offer}" clearly.
     4. Taglines: Create brief, relevant taglines for each product (5-7 words each).
     5. Call to Action: Include a clear call to action.

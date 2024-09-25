@@ -22,6 +22,11 @@
         <input v-model="colorPalette" type="text" id="colorPalette" required
                class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
+      <div class="form-group">
+        <label for="size" class="block text-lg font-medium text-blue-200 mb-2">Size (optional, e.g., 1200x628):</label>
+        <input v-model="size" type="text" id="size" placeholder="1200x628"
+               class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+      </div>
       <button type="submit" :disabled="isLoading"
               class="w-full bg-blue-600 text-white rounded-full py-3 px-6 font-bold text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105">
         {{ isLoading ? 'Generating...' : 'Generate Banner' }}
@@ -46,6 +51,8 @@ export default {
       offer: '',
       theme: '',
       colorPalette: '',
+      size: '',
+      format: 'PNG',
       result: null,
       isLoading: false
     }
@@ -68,6 +75,10 @@ export default {
       formData.append('offer', this.offer);
       formData.append('theme', this.theme);
       formData.append('colorPalette', this.colorPalette);
+      if (this.size) {
+        formData.append('size', this.size);
+      }
+      formData.append('format', this.format);
 
       try {
         const response = await fetch('/generate_banner', {

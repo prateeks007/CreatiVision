@@ -2,8 +2,9 @@ from huggingface_hub import login, InferenceClient
 from app.banner import generate_banner
 from app.utils import save_uploaded_file, allowed_file
 import os
+from PIL import Image
 
-def generate_and_save_banner(files, offer, theme, color_palette):
+def generate_and_save_banner(files, offer, theme, color_palette, format='PNG', size=None):
     filenames = []
     for file in files:
         if not allowed_file(file.filename):
@@ -26,17 +27,26 @@ def generate_and_save_banner(files, offer, theme, color_palette):
         guidance_scale=7.5
     )
     
+    # Resize the image if size is provided
+    if size:
+        image = image.resize(size)
+    
     # Save the image with a unique identifier
     import time
     timestamp = int(time.time())
-    image_filename = f"generated_banner_{timestamp}.png"
+    image_filename = f"generated_banner_{timestamp}.{format.lower()}"
     image_path = os.path.join("static", "generated", image_filename)
     os.makedirs(os.path.dirname(image_path), exist_ok=True)
-    image.save(image_path)
+    image.save(image_path, format=format)
 
-    return {
+    result = {
         'message': "Banner generated and saved",
         'prompt': banner_prompt,
-        'image_path': f'/static/generated/{image_filename}'
+        'image_path': f'/static/generated/{image_filename}',
+        'format': format
     }
+    if size:
+        result['size'] = size
+
+    return result
 
