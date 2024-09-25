@@ -6,4 +6,7 @@ grpcio
 google-cloud-aiplatform
 python-dotenv
 gunicorn
+huggingface_hub
 google-cloud-vision
+vertexai
+werkzeug
