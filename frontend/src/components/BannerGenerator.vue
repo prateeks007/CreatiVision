@@ -37,7 +37,7 @@
     </div>
     <div v-if="result" class="result mt-8 animate-fade-in">
       <img :src="result.image_path" alt="Generated Banner" class="w-full rounded-lg shadow-lg">
-      <p class="mt-4 text-lg text-blue-200"><strong>Generated Prompt:</strong> {{ result.prompt }}</p>
+      <!-- <p class="mt-4 text-lg text-blue-200"><strong>Generated Prompt:</strong> {{ result.prompt }}</p> -->
     </div>
   </div>
 </template>

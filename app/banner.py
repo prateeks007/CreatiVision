@@ -31,9 +31,9 @@ def generate_banner(filenames, offer, theme, color_palette):
     {products_info}
 
     Banner Elements:
-    1. Main Heading: Create a clear headline incorporating the theme "{theme}".
+    1. Main Heading: Create a clear headline incorporating the theme {theme}.
     2. Product Showcase: Prominently display the main product(s): {', '.join([desc.split(': ')[1] for desc in product_descriptions])}.
-    3. Offer Display: Present the offer "{offer}" clearly.
+    3. Offer Display: Present the offer {offer} clearly.
     4. Taglines: Create brief, relevant taglines for each product (5-7 words each).
     5. Call to Action: Include a clear call to action.
     6. Background: Design a background that complements the theme.
@@ -59,5 +59,9 @@ def generate_banner(filenames, offer, theme, color_palette):
     model = genai.GenerativeModel('models/gemini-pro')
     response = model.generate_content(prompt)
     generated_text = response.text if hasattr(response, 'text') else str(response)
+    
+    # Remove any quotes from the generated text
+    generated_text = generated_text.replace('"', '').replace("'", "")
+    
     print(generated_text)
     return generated_text
