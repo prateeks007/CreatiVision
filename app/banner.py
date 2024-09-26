@@ -3,16 +3,59 @@ import logging
 import os
 from dotenv import load_dotenv
 from app.analyze_image import analyze_image
+from abc import ABC, abstractmethod
 
 load_dotenv()
 
-def generate_banner(filenames, offer, theme, color_palette):
+class ImageGenerator(ABC):
+    @abstractmethod
+    def generate_image(self, prompt):
+        pass
+
+class HuggingFaceGenerator(ImageGenerator):
+    def __init__(self):
+        from huggingface_hub import login, InferenceClient
+        login(token=os.getenv('HUGGING_FACE_API_KEY'))
+        self.client = InferenceClient()
+
+    def generate_image(self, prompt):
+        return self.client.text_to_image(
+            prompt,
+            num_inference_steps=100,
+            guidance_scale=7.5
+        )
+
+class GoogleImagenGenerator(ImageGenerator):
+    def __init__(self):
+        import vertexai
+        from vertexai.preview.vision_models import ImageGenerationModel
+        project_id = os.getenv('GOOGLE_CLOUD_PROJECT_ID')
+        vertexai.init(project=project_id, location="us-central1")
+        self.model = ImageGenerationModel.from_pretrained("imagen-3.0-generate-001")
+
+    def generate_image(self, prompt):
+        images = self.model.generate_images(
+            prompt=prompt,
+            number_of_images=1,
+            language="en"
+        )
+        return images[0]
+
+def get_image_generator(generator_type):
+    if generator_type == 'huggingface':
+        return HuggingFaceGenerator()
+    elif generator_type == 'imagen':
+        return GoogleImagenGenerator()
+    else:
+        raise ValueError(f"Unknown generator type: {generator_type}")
+
+def generate_banner(filenames, offer, theme, color_palette, generator_type):
     logging.info(f"Generating banner prompt for offer: {offer}")
     
     product_descriptions = []
     for filename in filenames:
         image_analysis = analyze_image(filename)
-        main_product = image_analysis['labels'][0]  # Get the main product label
+        main_product = image_analysis['labels'][0]
         colors = image_analysis.get('colors', [])
         objects = image_analysis.get('objects', [])
         texts = image_analysis.get('texts', [])
@@ -82,4 +125,8 @@ def generate_banner(filenames, offer, theme, color_palette):
     generated_text = generated_text.replace('"', '').replace("'", "")
     
     print(generated_text)
-    return generated_text
+    
+    generator = get_image_generator(generator_type)
+    image = generator.generate_image(generated_text)
+    
+    return image, generated_text

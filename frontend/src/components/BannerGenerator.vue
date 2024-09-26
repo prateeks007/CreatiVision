@@ -23,6 +23,19 @@
                class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
       <div class="form-group">
+        <label for="generatorType" class="block text-lg font-medium text-blue-200 mb-2">Generator Type:</label>
+        <div class="relative">
+          <select v-model="generatorType" id="generatorType" required
+                  class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 appearance-none custom-select">
+            <option value="huggingface">Hugging Face</option>
+            <option value="imagen">Google Imagen</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-200">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M7 10l5 5 5-5H7z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <label for="size" class="block text-lg font-medium text-blue-200 mb-2">Size (optional, e.g., 1200x628):</label>
         <input v-model="size" type="text" id="size" placeholder="1200x628"
                class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
@@ -37,7 +50,6 @@
     </div>
     <div v-if="result" class="result mt-8 animate-fade-in">
       <img :src="result.image_path" alt="Generated Banner" class="w-full rounded-lg shadow-lg">
-      <!-- <p class="mt-4 text-lg text-blue-200"><strong>Generated Prompt:</strong> {{ result.prompt }}</p> -->
     </div>
   </div>
 </template>
@@ -51,6 +63,7 @@ export default {
       offer: '',
       theme: '',
       colorPalette: '',
+      generatorType: 'huggingface',
       size: '',
       format: 'PNG',
       result: null,
@@ -75,6 +88,7 @@ export default {
       formData.append('offer', this.offer);
       formData.append('theme', this.theme);
       formData.append('colorPalette', this.colorPalette);
+      formData.append('generatorType', this.generatorType);
       if (this.size) {
         formData.append('size', this.size);
       }
@@ -164,5 +178,62 @@ input[type="file"]:hover::before {
 
 input[type="file"]:active::before {
   background: var(--color-primary);
+}
+
+/* Custom styles for the dropdown */
+.custom-select {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border-radius: 0.5rem; /* Rounded corners */
+  padding-right: 2.5rem; /* Space for the custom arrow */
+}
+
+.custom-select option {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+/* Ensure the selected option text is visible */
+.custom-select:focus {
+  color: var(--color-on-surface);
+}
+
+/* Custom styles for the dropdown options */
+.custom-select option {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+.custom-select option:hover {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Ensure the selected option text is visible */
+.custom-select option:checked {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Additional styles to ensure visibility */
+.custom-select option {
+  background-color: #1a202c; /* Dark background */
+  color: #e2e8f0; /* Light text color */
+}
+
+.custom-select option:hover {
+  background-color: #2d3748; /* Slightly lighter dark background */
+  color: #edf2f7; /* Slightly lighter text color */
+}
+
+.custom-select option:checked {
+  background-color: #2b6cb0; /* Blue background for selected option */
+  color: #ffffff; /* White text color for selected option */
+}
+
+/* Ensure the selected option text is visible */
+.custom-select option[selected] {
+  background-color: #2b6cb0; /* Blue background for selected option */
+  color: #ffffff; /* White text color for selected option */
 }
 </style>
