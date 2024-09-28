@@ -5,28 +5,28 @@
       <div class="form-group">
         <label for="productImages" class="block text-lg font-medium text-blue-200 mb-2">Product Images:</label>
         <input type="file" id="productImages" @change="onFileChange" accept="image/*" multiple required
-               class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+               class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-white dark:bg-opacity-20 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
       <div class="form-group">
         <label for="offer" class="block text-lg font-medium text-blue-200 mb-2">Promotional Offer:</label>
         <input v-model="offer" type="text" id="offer" required
-               class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+               class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-white dark:bg-opacity-20 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
       <div class="form-group">
         <label for="theme" class="block text-lg font-medium text-blue-200 mb-2">Theme:</label>
         <input v-model="theme" type="text" id="theme" required
-               class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+               class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-white dark:bg-opacity-20 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
       <div class="form-group">
         <label for="colorPalette" class="block text-lg font-medium text-blue-200 mb-2">Color Palette (comma-separated):</label>
         <input v-model="colorPalette" type="text" id="colorPalette" required
-               class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+               class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-white dark:bg-opacity-20 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
       <div class="form-group">
-        <label for="generatorType" class="block text-lg font-medium text-blue-200 mb-2">Generator Type:</label>
+        <label for="generatorType" class="block text-lg font-medium text-blue-200 mb-2">Image Generation Model:</label>
         <div class="relative">
           <select v-model="generatorType" id="generatorType" required
-                  class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 appearance-none custom-select">
+                  class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-white dark:bg-opacity-20 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 appearance-none custom-select">
             <option value="huggingface">Hugging Face</option>
             <option value="imagen">Google Imagen</option>
           </select>
@@ -38,7 +38,7 @@
       <div class="form-group">
         <label for="size" class="block text-lg font-medium text-blue-200 mb-2">Size (optional, e.g., 1200x628):</label>
         <input v-model="size" type="text" id="size" placeholder="1200x628"
-               class="w-full px-4 py-3 text-gray-200 bg-opacity-20 bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
+               class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-white dark:bg-opacity-20 dark:bg-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300">
       </div>
       <button type="submit" :disabled="isLoading"
               class="w-full bg-blue-600 text-white rounded-full py-3 px-6 font-bold text-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105">
@@ -183,25 +183,25 @@ input[type="file"]:active::before {
 /* Custom styles for the dropdown */
 .custom-select {
   background-color: var(--color-surface);
-  color: var(--color-on-surface);
-  border-radius: 0.5rem; /* Rounded corners */
-  padding-right: 2.5rem; /* Space for the custom arrow */
+  color: var(--color-text);
+  border-radius: 0.5rem;
+  padding-right: 2.5rem;
 }
 
 .custom-select option {
   background-color: var(--color-surface);
-  color: var(--color-on-surface);
+  color: var(--color-text);
 }
 
 /* Ensure the selected option text is visible */
 .custom-select:focus {
-  color: var(--color-on-surface);
+  color: var(--color-text);
 }
 
 /* Custom styles for the dropdown options */
 .custom-select option {
   background-color: var(--color-surface);
-  color: var(--color-on-surface);
+  color: var(--color-text);
 }
 
 .custom-select option:hover {
@@ -217,23 +217,23 @@ input[type="file"]:active::before {
 
 /* Additional styles to ensure visibility */
 .custom-select option {
-  background-color: #1a202c; /* Dark background */
-  color: #e2e8f0; /* Light text color */
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
 .custom-select option:hover {
-  background-color: #2d3748; /* Slightly lighter dark background */
-  color: #edf2f7; /* Slightly lighter text color */
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 .custom-select option:checked {
-  background-color: #2b6cb0; /* Blue background for selected option */
-  color: #ffffff; /* White text color for selected option */
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 /* Ensure the selected option text is visible */
 .custom-select option[selected] {
-  background-color: #2b6cb0; /* Blue background for selected option */
-  color: #ffffff; /* White text color for selected option */
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 </style>
