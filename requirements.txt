@@ -10,3 +10,4 @@ huggingface_hub
 google-cloud-vision
 vertexai
 werkzeug
+

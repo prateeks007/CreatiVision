@@ -1,21 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Banner Prompt Generator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <style>
+      /* Custom styles for the dropdown */
+      .custom-select-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+      }
+
+      .custom-select {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        color: #333;
+        font-size: 16px;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6-6 6 6"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+      }
+
+      .custom-select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+      }
+
+      .custom-select-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #333;
+        transform: translateY(-50%);
+      }
+
+      .custom-select-wrapper select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        color: #333;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .custom-select-wrapper select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
     <h1>CreatiVision Banner Generator</h1>
     <form id="bannerForm">
-        <input type="file" id="productImage" name="productImage" accept="image/*" required>
-        <input type="text" id="offer" name="offer" placeholder="Promotional Offer" required>
-        <input type="text" id="theme" name="theme" placeholder="Theme" required>
-        <input type="text" id="colorPalette" name="colorPalette" placeholder="Color Palette (comma-separated)" required>
-        <button type="submit">Generate Prompt</button>
+      <input
+        type="file"
+        id="productImage"
+        name="productImage"
+        accept="image/*"
+        required
+      />
+      <input
+        type="text"
+        id="offer"
+        name="offer"
+        placeholder="Promotional Offer"
+        required
+      />
+      <input type="text" id="theme" name="theme" placeholder="Theme" required />
+      <input
+        type="text"
+        id="colorPalette"
+        name="colorPalette"
+        placeholder="Color Palette (comma-separated)"
+        required
+      />
+      <div class="custom-select-wrapper">
+        <select id="generatorType" name="generatorType" required>
+          <option value="huggingface">Hugging Face</option>
+          <option value="imagen">Google Imagen</option>
+        </select>
+      </div>
+      <button type="submit">Generate Prompt</button>
     </form>
     <div id="result"></div>
     <script src="{{ url_for('static', filename='js/banner.js') }}"></script>
-</body>
+  </body>
 </html>
