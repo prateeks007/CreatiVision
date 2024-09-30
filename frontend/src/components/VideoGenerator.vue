@@ -1,7 +1,6 @@
 <template>
-  <div class="video-generator max-w-4xl mx-auto my-12 p-8 bg-white dark:bg-gray-800 rounded-xl shadow-2xl relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 opacity-10 animate-gradient"></div>
-    <div class="relative z-10">
+  <div class="video-page-container min-h-screen relative">
+    <div class="video-generator max-w-4xl mx-auto my-12 p-8 bg-white dark:bg-gray-800 rounded-xl shadow-2xl relative z-10">
       <div class="text-center mb-8">
         <h2 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">AI Video Generator</h2>
         <p class="text-xl text-gray-300 mt-2">Create engaging videos with the power of AI</p>
@@ -168,4 +167,47 @@ input:hover, select:hover {
   animation: gradientAnimation 15s ease infinite;
   background-size: 400% 400%;
 }
+</style>
+
+<style>
+:root {
+  --bg-gradient-1: #e0f2fe;  /* Light sky blue */
+  --bg-gradient-2: #fae8ff;  /* Light lavender */
+  --bg-gradient-3: #f0fdf4;  /* Light mint */
+}
+
+.dark {
+  --bg-gradient-1: #0f172a;  /* Deep navy */
+  --bg-gradient-2: #292524;  /* Dark brown */
+  --bg-gradient-3: #1e293b;  /* Dark slate blue */
+}
+</style>
+
+<style scoped>
+.video-page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    var(--bg-gradient-1),
+    var(--bg-gradient-2),
+    var(--bg-gradient-3),
+    var(--bg-gradient-2));
+  background-size: 400% 400%;
+  animation: gradientAnimation 20s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add any other scoped styles you need */
 </style>
