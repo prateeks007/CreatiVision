@@ -2,10 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-html.dark {
-  @apply bg-gray-900 text-white;
+:root {
+  --color-background: #ffffff;
+  --color-text: #333333;
+}
+
+.dark {
+  --color-background: #1a202c;
+  --color-text: #ffffff;
+}
+
+body, #app {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 body {
   @apply min-h-screen;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.nav-link {
+  @apply text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition duration-300;
+}
+
+.nav-link.router-link-active {
+  @apply text-blue-500 dark:text-blue-400 font-semibold;
+}
+
+button, .nav-link {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover, .nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input, select {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
 }
