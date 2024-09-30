@@ -68,10 +68,10 @@ export default {
     return {
       testimonials: [
         {
-          name: "John Doe",
+          name: "Aman kumar",
           title: "Marketing Manager",
-          comment: "CreatiVision has revolutionized our marketing efforts. The AI-generated content is simply amazing!",
-          rating: 5,
+          comment: "With CreatiVision, we've seen a significant improvement in our ad performance. The videos it creates are vibrant, attention-grabbing, and perfectly tailored for our target audience. Highly recommend",
+          rating: 4,
           avatar: "path/to/john-avatar.jpg"
         },
         {
