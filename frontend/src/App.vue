@@ -17,7 +17,7 @@
       <router-view></router-view>
       <footer class="bg-gray-100 dark:bg-gray-800 py-4 mt-auto">
         <div class="container mx-auto text-center text-gray-600 dark:text-gray-300">
-          &copy; 2023 CreatiVision. All rights reserved.
+          &copy; 2024 CreatiVision. All rights reserved.
         </div>
       </footer>
     </div>
