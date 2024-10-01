@@ -88,9 +88,9 @@ def generate_banner(filenames, offer, theme, color_palette, generator_type):
     Banner Elements:
     1. Main Eye-catching Text: Create a bold, attention-grabbing headline that relates to the theme and offer. This should be a catchy, creative interpretation of the theme, not just a repetition. For example, if the theme is about cricket performance, create a headline that cleverly connects cricket to shopping or deals. This should be the largest and most prominent text on the banner.
     2. Main Heading: Create a creative and catchy heading that incorporates the essence of "{theme} Special" without using these exact words. Make it engaging and relevant to Big Basket's offerings.
-    3. Product Showcase: Prominently display the main product(s): {main_products}. Ensure accurate representation of each product's specific appearance, including color and packaging details. Pay special attention to the exact colors of the product packaging.
+    3. Product Showcase: Prominently display ONLY the main product(s) mentioned above: {main_products}. Do not add or showcase any products that are not listed here. Ensure accurate representation of each product's specific appearance, including color and packaging details. Do not add any text or modifications to the product packaging itself.
     4. Offer Display: Use exactly this text for the offer: "{offer}"
-    5. Product Features: Create a short, catchy phrase for each product that highlights its key feature or benefit. Do not label these as taglines in the image.
+    5. Product Features: Create short, catchy phrases for each product that highlight its key feature or benefit. Place these phrases near the products, but not on the product packaging.
     6. Call to Action: Use exactly this text: "Shop Now at BigBasket.com"
     7. Background: Design a background that complements the theme and product colors.
     8. Big Basket Logo: Include the text "Big Basket" in a logo-like format.
@@ -111,7 +111,8 @@ def generate_banner(filenames, offer, theme, color_palette, generator_type):
     - Ensure the Big Basket logo or text is a key element of the banner
     - Accurately represent each product's specific appearance, including exact packaging details and colors
     - Use only the exact text provided for headings, offer, and call to action
-    - Pay special attention to the exact colors of the product packaging. For example, if the Lays chips are yellow, ensure they are depicted as yellow, not red or any other color.
+    - Do not add any text or modifications to the product packaging itself
+    - Do not include any products that are not mentioned in the product list above
 
     Provide a concise description of the banner design, focusing on:
     1. The catchy headline created and how it relates to the theme
@@ -136,4 +137,4 @@ def generate_banner(filenames, offer, theme, color_palette, generator_type):
     generator = get_image_generator(generator_type)
     image = generator.generate_image(generated_text)
     
-    return image, generated_text
+    return image, generated_text 

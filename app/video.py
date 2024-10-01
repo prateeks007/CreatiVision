@@ -1,7 +1,11 @@
 import os
 import google.generativeai as genai
 import moviepy.editor as mp
+# from .utils import save_generated_file
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.utils import save_generated_file
+
 
 def generate_video(product_image, offer, theme, color_palette, size, duration):
     genai.configure(api_key='YOUR_GEMINI_API_KEY')
