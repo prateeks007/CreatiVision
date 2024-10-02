@@ -97,6 +97,7 @@ def generate_banner(filenames, offer, theme, color_palette, generator_type):
 
     Design Guidelines:
     - Use the provided color palette throughout the banner
+    - Stick to the color palette for the background as well: {color_palette}
     - Incorporate the dominant colors from the product images: {dominant_colors}
     - Maintain a clear visual hierarchy with the main eye-catching text as a focal point, but not centrally located
     - Ensure all text is legible

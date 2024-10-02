@@ -28,7 +28,24 @@ Please note that the video generation feature is still under development. We're 
 
 ## 🔮 Future Developments
 
-CreatiVision is an evolving project with significant potential for growth. We're continuously working on enhancing existing features and introducing new capabilities to meet the dynamic needs of digital marketing.
+CreatiVision is an evolving project with significant potential for growth. We're continuously working on enhancing existing features and introducing new capabilities to meet the dynamic needs of digital marketing. Some key areas for future development include:
+
+- Implementing the video generation feature
+- Enhancing the AI models for more accurate and creative outputs
+- Improving user interface and experience
+- Expanding customization options for generated assets
+
+## 🔒 Security Considerations
+
+Due to time constraints during the hackathon, we acknowledge that the current version of CreatiVision may not have comprehensive security measures in place. We recognize the importance of robust security in AI-powered applications and plan to prioritize the following improvements in future updates:
+
+- Implementing user authentication and authorization
+- Securing API endpoints and data transmission
+- Enhancing input validation and sanitization
+- Implementing rate limiting and other anti-abuse measures
+- Ensuring compliance with data protection regulations
+
+We are committed to addressing these security concerns to provide a safe and reliable tool for our users.
 
 ## 🖼️ Example Banner
 
@@ -41,6 +58,12 @@ We encourage users to utilize CreatiVision responsibly:
 - Respect copyright and intellectual property rights
 - Ensure generated content aligns with your brand guidelines and values
 - Use the tool to enhance, not replace, human creativity in marketing
+
+## 🚀 Hosting
+
+CreatiVision is currently hosted on Render, providing a reliable and scalable environment for our application. However, as our project evolves and grows, we may explore other hosting options or consider upgrading our infrastructure to better serve our users' needs.
+
+Stay tuned for any updates regarding our hosting situation. We're committed to ensuring the best possible performance and availability for CreatiVision.
 
 ## 🏆 About the GenAI Exchange Hackathon
 

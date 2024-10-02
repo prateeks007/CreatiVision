@@ -9,33 +9,42 @@ PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT_ID')
 output_file = "image.png"
 prompt = """
 
-## Big Basket: Interstellar Grocery Run
+Create a detailed architecture diagram for the CreatiVision project, an AI-powered marketing asset generator. The diagram should include the following components and their interactions:
 
-**1. Catchy Headline:** Launch Your Taste Buds into Orbit! This headline captures the essence of the interstellar theme while relating it to the excitement of exploring new flavors and enjoying Big Baskets grocery 
-offerings.
+1. Frontend (Vue.js Application):
+   - Main App component
+   - Router
+   - Components: Home, BannerGenerator, VideoGenerator
 
-**2. Theme Influence:** The overall design is inspired by the vastness and mystery of space. A dark, starry background with swirling nebulas of purple, blue, and orange creates an otherworldly atmosphere.
+2. Backend (Flask Application):
+   - Main app.py file
+   - Routes
+   - Banner generation module
+   - Video generation module (placeholder)
+   - Image analysis module
 
-**3. Layout:**
+3. External Services:
+   - Google Cloud Vision API (for image analysis)
+   - Google Generative AI (for prompt generation)
+   - Hugging Face API (for image generation)
+   - Google Imagen API (alternative for image generation)
 
-* **Top Left:** Launch Your Taste Buds into Orbit! in bold, white text with a subtle glow effect.
-* **Bottom Right:**  Big Basket logo in its signature orange and green colors, slightly enlarged for prominence.
-* **Center:** A cluster of the specified products: A bag of Lays chips angled dynamically and a Pepsi can with condensation, both realistically rendered with accurate packaging colors and logos.
-* **Below Products:** combo offer in smaller, red text.
-* **Right of Products:** Shop Now at BigBasket.com within a vibrant green button with rounded edges.       
+4. Hosting:
+   - Render (for both frontend and backend)
 
-**4. Color Palette:** The background utilizes the provided blue, purple, and orange hues in a cosmic swirl, evoking nebulae. The product colors - red (Lays) and blue (Pepsi) - pop against the dark background and are further emphasized by subtle glow effects.
+5. File Storage:
+   - Local storage on Render for generated images
 
-**5. Product-Inspired Design:**  The Lays bag is angled as if floating in zero gravity, while the Pepsi can features realistic condensation, adding to the dynamic, out-of-this-world feel.
+Key interactions to highlight:
+1. User interaction with the Vue.js frontend hosted on Render
+2. API calls between frontend and backend
+3. Backend processing requests and interacting with external APIs
+4. Data flow for image upload, analysis, and generation
+5. Storage and retrieval of generated images
 
-**6. Big Basket Branding:** The signature orange and green Big Basket logo is prominently displayed in the 
-bottom right corner, instantly recognizable and reinforcing brand identity.
+Use appropriate symbols for each component (e.g., rectangles for applications, cylinders for databases, clouds for external services). Use arrows to show the direction of data flow and API calls. Include a legend to explain the symbols used.
 
-**7. Product Representation:** Products are displayed with meticulous attention to detail. The Lays bag accurately reflects its packaging, including the logo, color scheme, and bag texture. Similarly, the Pepsi can is faithfully recreated with accurate branding, color, and even the condensation effect for added realism.
-**8. Text Placement:**
-* combo offer is placed directly below the product cluster in a smaller font size, clearly associated with 
-the displayed items.
-*  Shop Now at BigBasket.com is incorporated within a clear call-to-action button to the right of the products, prompting immediate action.
+The diagram should be clear, visually appealing, and easy to understand for both technical and non-technical audiences. Use color coding to differentiate between frontend, backend, and external services.
 
 """
 
