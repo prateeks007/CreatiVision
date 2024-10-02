@@ -123,8 +123,17 @@
         <img
           :src="result.image_path"
           alt="Generated Banner"
-          class="w-full rounded-lg shadow-lg"
+          class="w-full rounded-lg shadow-lg mb-4"
         />
+        <div class="flex justify-center">
+          <a
+            :href="result.image_path"
+            download="generated_banner.png"
+            class="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg py-3 px-6 font-bold text-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+          >
+            <i class="fas fa-download mr-2"></i>Download Banner
+          </a>
+        </div>
       </div>
     </div>
   </div>

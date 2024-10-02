@@ -91,16 +91,12 @@
           What Our Users Say
         </h2>
         <div class="relative">
-          <div class="testimonials-container overflow-hidden">
-            <transition-group
-              name="testimonial-slide"
-              tag="div"
-              class="testimonials-wrapper flex justify-between"
-            >
+          <div class="testimonials-container">
+            <div ref="testimonialsWrapper" class="testimonials-wrapper">
               <div
-                v-for="testimonial in visibleTestimonials"
+                v-for="testimonial in testimonials"
                 :key="testimonial.id"
-                class="testimonial-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 flex-shrink-0 w-full md:w-[30%]"
+                class="testimonial-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
               >
                 <p class="text-gray-600 dark:text-gray-300 mb-4">
                   {{ testimonial.comment }}
@@ -130,21 +126,47 @@
                   </span>
                 </div>
               </div>
-            </transition-group>
+            </div>
           </div>
           <button
-            @click="prevTestimonials"
-            class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300"
+            @click="scrollTestimonials('left')"
+            class="testimonial-arrow left-arrow"
+            aria-label="Previous testimonial"
           >
-            <i class="fas fa-chevron-left text-gray-600 dark:text-gray-300"></i>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
           </button>
           <button
-            @click="nextTestimonials"
-            class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300"
+            @click="scrollTestimonials('right')"
+            class="testimonial-arrow right-arrow"
+            aria-label="Next testimonial"
           >
-            <i
-              class="fas fa-chevron-right text-gray-600 dark:text-gray-300"
-            ></i>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </button>
         </div>
       </div>
@@ -153,7 +175,7 @@
 </template>
 
 <script>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref } from "vue";
 
 export default {
   name: "HomePage",
@@ -170,60 +192,56 @@ export default {
       },
       {
         id: 2,
-        name: "Jane Smith",
+        name: "Mohammed Zaid Sikander",
         title: "Small Business Owner",
         comment:
           "I can't believe how easy it is to create professional-looking banners and videos. Highly recommended!",
         rating: 4,
-        avatar: "/static/images/avatars/jane-avatar.png",
+        avatar: "/static/images/avatars/zaid-avatar.png",
       },
       {
         id: 3,
-        name: "Mike Johnson",
+        name: "KS Sohan",
         title: "Freelance Designer",
         comment:
           "The time we save using CreatiVision is incredible. It's like having a design team at your fingertips.",
         rating: 5,
-        avatar: "/static/images/avatars/mike-avatar.png",
+        avatar: "/static/images/avatars/sohan-avatar.png",
       },
       {
         id: 4,
-        name: "Sarah Lee",
+        name: "Arun Patil",
         title: "E-commerce Entrepreneur",
         comment:
-          "CreatiVision has revolutionized our product marketing. The AI-generated content is spot-on every time!",
-        rating: 5,
-        avatar: "/static/images/avatars/sarah-avatar.png",
+          "CreatiVision has revolutionized our product marketing. The AI-generated content is decent and saves a lot of time.",
+        rating: 4.5,
+        avatar: "/static/images/avatars/arun-avatar.png",
       },
-      {
-        id: 5,
-        name: "David Chen",
-        title: "Social Media Influencer",
-        comment:
-          "As an influencer, I need to create content quickly. CreatiVision is my secret weapon for eye-catching visuals.",
-        rating: 4,
-        avatar: "/static/images/avatars/david-avatar.png",
-      },
+      // {
+      //   id: 5,
+      //   name: "David Chen",
+      //   title: "Social Media Influencer",
+      //   comment:
+      //     "As an influencer, I need to create content quickly. CreatiVision is my secret weapon for eye-catching visuals.",
+      //   rating: 4,
+      //   avatar: "/static/images/avatars/david-avatar.png",
+      // },
     ]);
 
-    const currentIndex = ref(0);
+    const testimonialsWrapper = ref(null);
 
-    const visibleTestimonials = computed(() => {
-      return testimonials.value.slice(
-        currentIndex.value,
-        currentIndex.value + 3
-      );
-    });
+    const scrollTestimonials = (direction) => {
+      const wrapper = testimonialsWrapper.value;
+      const scrollAmount = wrapper.offsetWidth;
+      const maxScroll = wrapper.scrollWidth - wrapper.offsetWidth;
 
-    const nextTestimonials = () => {
-      if (currentIndex.value + 3 < testimonials.value.length) {
-        currentIndex.value++;
-      }
-    };
-
-    const prevTestimonials = () => {
-      if (currentIndex.value > 0) {
-        currentIndex.value--;
+      if (direction === "left") {
+        wrapper.scrollLeft = Math.max(0, wrapper.scrollLeft - scrollAmount);
+      } else {
+        wrapper.scrollLeft = Math.min(
+          maxScroll,
+          wrapper.scrollLeft + scrollAmount
+        );
       }
     };
 
@@ -281,9 +299,9 @@ export default {
     };
 
     return {
-      visibleTestimonials,
-      nextTestimonials,
-      prevTestimonials,
+      testimonials,
+      testimonialsWrapper,
+      scrollTestimonials,
     };
   },
 };
@@ -373,110 +391,124 @@ export default {
 }
 
 .testimonials-container {
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-}
-
-.testimonials-container::-webkit-scrollbar {
-  display: none; /* WebKit */
-}
-
-.testimonials-wrapper {
-  display: inline-flex;
-  padding-bottom: 1rem;
-  min-width: 100%;
-}
-
-.testimonial-card {
-  width: 20rem;
-}
-
-@media (max-width: 640px) {
-  .testimonials-wrapper {
-    justify-content: flex-start;
-  }
-}
-
-.testimonial-slide-enter-active,
-.testimonial-slide-leave-active {
-  transition: all 0.5s ease;
-}
-
-.testimonial-slide-enter-from {
-  opacity: 0;
-  transform: translateX(100%);
-}
-
-.testimonial-slide-leave-to {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-
-.testimonials-container {
+  position: relative;
   overflow: hidden;
+  padding: 0 40px;
 }
 
 .testimonials-wrapper {
   display: flex;
   transition: transform 0.5s ease;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-@media (max-width: 768px) {
-  .testimonials-wrapper {
-    flex-direction: column;
-  }
-}
-
-.testimonials-container {
-  position: relative;
-  padding: 0 40px; /* Add padding to make room for the buttons */
+.testimonials-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .testimonial-card {
-  width: 20rem;
-  margin: 0 10px; /* Add some margin between cards */
+  flex: 0 0 calc(33.333% - 20px);
+  margin: 0 10px;
+  scroll-snap-align: start;
 }
 
-/* Update button styles */
-.testimonials-container button {
+.testimonial-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.testimonials-container button:hover {
+.testimonial-arrow:hover {
   background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.testimonials-container button:first-child {
-  left: 0;
+.testimonial-arrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
-.testimonials-container button:last-child {
-  right: 0;
+.testimonial-arrow svg {
+  width: 24px;
+  height: 24px;
+  color: #4a5568;
+  transition: color 0.3s ease;
 }
 
-/* Dark mode adjustments */
+.testimonial-arrow:hover svg {
+  color: #2d3748;
+}
+
+.left-arrow {
+  left: -24px;
+}
+
+.right-arrow {
+  right: -24px;
+}
+
+/* Dark mode styles */
+.dark .testimonial-arrow {
+  background-color: rgba(45, 55, 72, 0.9);
+}
+
+.dark .testimonial-arrow:hover {
+  background-color: rgba(45, 55, 72, 1);
+}
+
+.dark .testimonial-arrow svg {
+  color: #a0aec0;
+}
+
+.dark .testimonial-arrow:hover svg {
+  color: #e2e8f0;
+}
+
 @media (prefers-color-scheme: dark) {
-  .testimonials-container button {
-    background-color: rgba(31, 41, 55, 0.8);
+  .testimonial-arrow {
+    background-color: rgba(45, 55, 72, 0.9);
   }
 
-  .testimonials-container button:hover {
-    background-color: rgba(31, 41, 55, 1);
+  .testimonial-arrow:hover {
+    background-color: rgba(45, 55, 72, 1);
+  }
+
+  .testimonial-arrow svg {
+    color: #a0aec0;
+  }
+
+  .testimonial-arrow:hover svg {
+    color: #e2e8f0;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-card {
+    flex: 0 0 calc(100% - 20px);
+  }
+
+  .left-arrow {
+    left: 0;
+  }
+
+  .right-arrow {
+    right: 0;
   }
 }
 </style>
