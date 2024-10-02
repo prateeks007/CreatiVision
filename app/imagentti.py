@@ -10,16 +10,32 @@ output_file = "image.png"
 prompt = """
 
 
-Create a promotional banner for Big Basket featuring Lays chips and a Pepsi can.
+## Big Basket: Interstellar Snack Attack!
 
-Theme: Attack on Titan (without mentioning the name directly)
-Headline: Colossal Grocery Assault: 50% Off Your Favorite Provisions!
-Color Palette: Red, Blue, Green (reference Big Basket branding)
-Products: Lays Chips, Pepsi Cans (with accurate packaging)
-Layout: Catchy headline in center, Big Basket logo top left, product images with call to action on bottom right.
-Style: Action-oriented, dynamic background with subtle manga influences.
+**1. Catchy Headline & Theme:** Interstellar Snack Attack! uses the interstellar theme with a playful twist to connect it to grocery shopping. It suggests an out-of-this-world snacking experience with Big Basket.  
 
-Important: Ensure the text is placed above or beside the product images. Avoid placing text directly on the product packaging.
+**2. Theme Influence:** The banner features a stylized depiction of outer space with swirling nebulas and twinkling stars in shades of red, blue, green, purple, and orange. This vibrant backdrop reinforces the interstellar theme while aligning with the specified color palette.
+
+**3. Layout & Element Arrangement:**
+
+* **Top Left:**  The Big Basket logo in its standard format.
+* **Center:** Interstellar Snack Attack! in bold, large font, with a slight arc for dynamism.
+* **Slightly Below Center:** A Lays chips bag and a Pepsi can are realistically rendered and prominently displayed, showcasing their actual packaging and colors.
+* **Below Products:** combo offer in a smaller font, emphasizing the deal.
+* **Below Lays:** Crunchy, satisfying goodness! in a fun font.
+* **Below Pepsi:**  Out-of-this-world refreshment! in a similar fun font.
+* **Bottom Right:** Shop Now at BigBasket.com  in a clear call to action button.
+
+**4. Color Palette & Product Colors:**  The background nebula uses the specified colors with gradients to create depth. The dominant colors of the Lays bag (red, yellow) and Pepsi can (blue, red, white) are reflected in the nearby nebulas, subtly linking the products with the background.
+
+**5.  Design Elements Inspired by Product Images:** The Lays bags wave design is subtly echoed in the surrounding nebula pattern, adding a visual connection without altering the product image itself.
+
+**6. Big Basket Branding:** The Big Basket logo is prominently displayed in the top left corner, ensuring immediate brand recognition.
+
+**7. Accurate Product Representation:** Both the Lays bag and Pepsi can are depicted with photographic accuracy, including their respective logos, color schemes, and packaging details. No modifications are made to 
+the original product images.
+
+**8. Text Placement:** All provided text elements (combo offer, Shop Now at BigBasket.com) are incorporated exactly as specified and positioned for optimal readability and impact.
 
 """
 
