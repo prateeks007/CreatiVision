@@ -21,11 +21,15 @@
           >
             <i class="fas fa-images mr-2"></i>Product Images:
           </label>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+            <i class="fas fa-info-circle mr-1"></i>Only PNG or JPG files are
+            allowed.
+          </p>
           <input
             type="file"
             id="productImages"
             @change="onFileChange"
-            accept="image/*"
+            accept=".png, .jpg, .jpeg"
             multiple
             required
             class="w-full px-4 py-3 text-gray-800 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
@@ -157,7 +161,17 @@ export default {
   },
   methods: {
     onFileChange(e) {
-      this.files = Array.from(e.target.files);
+      const files = Array.from(e.target.files);
+      const validFiles = files.filter((file) =>
+        ["image/png", "image/jpeg"].includes(file.type)
+      );
+
+      if (validFiles.length !== files.length) {
+        alert("Please upload only PNG or JPG images.");
+        e.target.value = ""; // Clear the file input
+      } else {
+        this.files = validFiles;
+      }
     },
     async generateBanner() {
       this.isLoading = true;

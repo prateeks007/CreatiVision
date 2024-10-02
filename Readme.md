@@ -1,52 +1,55 @@
-# 🎨🤖 CreatiVision: Your AI-Powered Marketing Magician! 🧙‍♂️✨
+# CreatiVision: AI-Powered Marketing Asset Generator
 
-Welcome to CreatiVision, the most magical tool in your marketing cauldron! 🧪 Created for the GenAI Exchange Hackathon, CreatiVision is here to turn your product images into dazzling banners and videos faster than you can say "abracadabra"!
+Welcome to CreatiVision, an innovative tool developed for the GenAI Exchange Hackathon by Google, addressing Big Basket's problem statement. CreatiVision transforms product images into compelling banners and videos, streamlining the creation of marketing assets.
 
-## 🌟 What's This Sorcery?
+## 🌟 Key Features
 
-Ever wished you could wave a wand and _poof_ - instant, eye-catching promotional content appears? Well, grab your wizard hat, because that's exactly what we've conjured up! 🎩✨
+- 🎨 **Banner Generator**: Create eye-catching banners from product images
+- 🎬 **Video Generator**: (Coming Soon) Generate engaging promotional videos
+- 🧠 **AI-Powered**: Utilizes advanced AI models for creative and relevant outputs
+- 🎯 **Customization**: Tailor outputs with themes, color palettes, and promotional offers
 
-Our AI-powered genie takes your:
+## 🚀 Getting Started
 
-- 📸 Product images (the more, the merrier!)
-- 💰 Promotional offer (the juicier, the better!)
-- 🎨 Color palette (your brand's secret sauce)
-- 🎭 Theme (Diwali, Christmas, or even Talk Like a Pirate Day!)
+1. Upload your product images
+2. Specify your promotional offer
+3. Choose a theme and color palette
+4. Generate your marketing asset
 
-And _ALAKAZAM!_ 💥 Out comes a stunning banner or video that'll make your customers' eyes pop! 👀
+## 💡 Tips for Optimal Results
 
-## 🚀 Features That'll Make You Go "Wow!"
+- For higher quality banners, use fewer input images (1-2 recommended)
+- Ensure product images are clear and high-resolution
+- Experiment with different themes and color palettes for varied results
 
-- 🎨 **Creative Genius**: Our AI has eaten more design books than you've had hot dinners!
-- 🐙 **Flexibility**: It bends and adapts like a digital yoga master!
-- ⚡ **Speed Demon**: Faster than a caffeinated cheetah on a rocket!
-- 🐣 **Newbie-Friendly**: So easy, even your grandma could use it (and look cool doing it)!
+## 🎥 Video Generation
 
-## 🎬 How to Perform This Magic?
+Please note that the video generation feature is still under development. We're excited about its potential and look forward to introducing this capability in future updates.
 
-1. 🖼️ Upload your product images
-2. 💬 Tell us about your awesome offer
-3. 🌈 Pick your brand colors
-4. 🎪 Choose a theme
-5. 🔮 Specify your desired output
-6. 🥁 Click "Generate" and... TADAA! 🎉
+## 🔮 Future Developments
 
-## 🦄 Why Use CreatiVision?
+CreatiVision is an evolving project with significant potential for growth. We're continuously working on enhancing existing features and introducing new capabilities to meet the dynamic needs of digital marketing.
 
-Because life's too short for boring promotions! Plus, think of all the time you'll save not wrestling with design software. Use that time to practice your victory dance for when sales start rolling in! 💃🕺
+## 🖼️ Example Banner
 
-## 🚨 Warning!
+[Insert example banner image here]
 
-Side effects may include: sudden bursts of creativity, uncontrollable desire to launch more promotions, and a strange urge to high-five your computer. We are not responsible for any of these symptoms. 😉
+## 🛠️ Responsible Use
 
-## 🎉 Ready to Make Marketing Magic?
+We encourage users to utilize CreatiVision responsibly:
 
-What are you waiting for? Dive in and let's turn those products into promo gold! 🥇
-
-Remember: With great power comes great responsibility... to create awesome promotions! 🦸‍♀️🦸‍♂️
+- Respect copyright and intellectual property rights
+- Ensure generated content aligns with your brand guidelines and values
+- Use the tool to enhance, not replace, human creativity in marketing
 
 ## 🏆 About the GenAI Exchange Hackathon
 
 CreatiVision is proudly developed as part of the GenAI Exchange Hackathon, showcasing the power of generative AI in revolutionizing marketing and content creation.
 
-Now go forth and dazzle the world with CreatiVision! ✨🌟💫
+## 📬 Feedback and Contributions
+
+We welcome your feedback and contributions to improve CreatiVision. Please feel free to open issues or submit pull requests on our GitHub repository.
+
+---
+
+CreatiVision: Empowering marketers with AI-driven creativity.
