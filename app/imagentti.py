@@ -9,42 +9,33 @@ PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT_ID')
 output_file = "image.png"
 prompt = """
 
-Create a detailed architecture diagram for the CreatiVision project, an AI-powered marketing asset generator. The diagram should include the following components and their interactions:
 
-1. Frontend (Vue.js Application):
-   - Main App component
-   - Router
-   - Components: Home, BannerGenerator, VideoGenerator
+## Big Basket: Interstellar Snack Attack!
 
-2. Backend (Flask Application):
-   - Main app.py file
-   - Routes
-   - Banner generation module
-   - Video generation module (placeholder)
-   - Image analysis module
+**1. Catchy Headline & Theme:** Interstellar Snack Attack! uses the interstellar theme with a playful twist to connect it to grocery shopping. It suggests an out-of-this-world snacking experience with Big Basket.  
 
-3. External Services:
-   - Google Cloud Vision API (for image analysis)
-   - Google Generative AI (for prompt generation)
-   - Hugging Face API (for image generation)
-   - Google Imagen API (alternative for image generation)
+**2. Theme Influence:** The banner features a stylized depiction of outer space with swirling nebulas and twinkling stars in shades of red, blue, green, purple, and orange. This vibrant backdrop reinforces the interstellar theme while aligning with the specified color palette.
 
-4. Hosting:
-   - Render (for both frontend and backend)
+**3. Layout & Element Arrangement:**
 
-5. File Storage:
-   - Local storage on Render for generated images
+* **Top Left:**  The Big Basket logo in its standard format.
+* **Center:** Interstellar Snack Attack! in bold, large font, with a slight arc for dynamism.
+* **Slightly Below Center:** A Lays chips bag and a Pepsi can are realistically rendered and prominently displayed, showcasing their actual packaging and colors.
+* **Below Products:** combo offer in a smaller font, emphasizing the deal.
+* **Below Lays:** Crunchy, satisfying goodness! in a fun font.
+* **Below Pepsi:**  Out-of-this-world refreshment! in a similar fun font.
+* **Bottom Right:** Shop Now at BigBasket.com  in a clear call to action button.
 
-Key interactions to highlight:
-1. User interaction with the Vue.js frontend hosted on Render
-2. API calls between frontend and backend
-3. Backend processing requests and interacting with external APIs
-4. Data flow for image upload, analysis, and generation
-5. Storage and retrieval of generated images
+**4. Color Palette & Product Colors:**  The background nebula uses the specified colors with gradients to create depth. The dominant colors of the Lays bag (red, yellow) and Pepsi can (blue, red, white) are reflected in the nearby nebulas, subtly linking the products with the background.
 
-Use appropriate symbols for each component (e.g., rectangles for applications, cylinders for databases, clouds for external services). Use arrows to show the direction of data flow and API calls. Include a legend to explain the symbols used.
+**5.  Design Elements Inspired by Product Images:** The Lays bags wave design is subtly echoed in the surrounding nebula pattern, adding a visual connection without altering the product image itself.
 
-The diagram should be clear, visually appealing, and easy to understand for both technical and non-technical audiences. Use color coding to differentiate between frontend, backend, and external services.
+**6. Big Basket Branding:** The Big Basket logo is prominently displayed in the top left corner, ensuring immediate brand recognition.
+
+**7. Accurate Product Representation:** Both the Lays bag and Pepsi can are depicted with photographic accuracy, including their respective logos, color schemes, and packaging details. No modifications are made to 
+the original product images.
+
+**8. Text Placement:** All provided text elements (combo offer, Shop Now at BigBasket.com) are incorporated exactly as specified and positioned for optimal readability and impact.
 
 """
 
