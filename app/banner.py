@@ -86,19 +86,19 @@ def generate_banner(filenames, offer, theme, color_palette, generator_type):
     {products_info}
 
     Banner Elements:
-    1. Main Eye-catching Text: Create a bold, attention-grabbing headline that relates to the theme and offer. This should be a catchy, creative interpretation of the theme, not just a repetition. For example, if the theme is about cricket performance, create a headline that cleverly connects cricket to shopping or deals. This should be the largest and most prominent text on the banner.
-    2. Main Heading: Create a creative and catchy heading that incorporates the essence of "{theme} Special" without using these exact words. Make it engaging and relevant to Big Basket's offerings.
-    3. Product Showcase: Prominently display ONLY the main product(s) mentioned above: {main_products}. Do not add or showcase any products that are not listed here. Ensure accurate representation of each product's specific appearance, including color and packaging details. Do not add any text or modifications to the product packaging itself.
-    4. Offer Display: Use exactly this text for the offer: "{offer}"
+    1. Main Eye-catching Text: Create a bold, attention-grabbing headline that relates to the theme and offer. This should be a catchy, creative interpretation of the theme, not just a repetition. For example, if the theme is about cricket performance, create a headline that cleverly connects cricket to shopping or deals. Place this text at the top, bottom, left, or right of the banner, but NOT in the center.
+    2. Main Heading: Create a creative and catchy heading that incorporates the essence of "{theme}" without using these exact words. Make it engaging and relevant to Big Basket's offerings. Position this heading opposite to the main eye-catching text for balance.
+    3. Product Showcase: Prominently display ONLY the main product(s) mentioned above: {main_products}. Do not add or showcase any products that are not listed here. Ensure accurate representation of each product's specific appearance, including color and packaging details. Do not add any text or modifications to the product packaging itself. Place the products in the central area of the banner.
+    4. Offer Display: Use exactly this text for the offer: "{offer}". Position this near the products but not overlapping them.
     5. Product Features: Create short, catchy phrases for each product that highlight its key feature or benefit. Place these phrases near the products, but not on the product packaging.
-    6. Call to Action: Use exactly this text: "Shop Now at BigBasket.com"
-    7. Background: Design a background that complements the theme and product colors.
-    8. Big Basket Logo: Include the text "Big Basket" in a logo-like format.
+    6. Call to Action: Use exactly this text: "Shop Now at BigBasket.com". Place this in a visually distinct area, such as a button or highlighted text box.
+    7. Background: Design a background that complements the theme and product colors, filling the space around the central product showcase.
+    8. Big Basket Logo: Include the text "Big Basket" in a logo-like format. Position this in one of the corners of the banner.
 
     Design Guidelines:
     - Use the provided color palette throughout the banner
     - Incorporate the dominant colors from the product images: {dominant_colors}
-    - Maintain a clear visual hierarchy with the main eye-catching text as the focal point
+    - Maintain a clear visual hierarchy with the main eye-catching text as a focal point, but not centrally located
     - Ensure all text is legible
     - Optimize the layout for quick comprehension
     - Make sure the Big Basket branding is clearly visible and recognizable
