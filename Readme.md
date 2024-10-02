@@ -49,7 +49,7 @@ We are committed to addressing these security concerns to provide a safe and rel
 
 ## 🖼️ Example Banner
 
-[Insert example banner image here]
+
 
 ## 🛠️ Responsible Use
 
