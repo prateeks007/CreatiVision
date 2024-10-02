@@ -217,15 +217,15 @@ export default {
         rating: 4.5,
         avatar: "/static/images/avatars/arun-avatar.png",
       },
-      // {
-      //   id: 5,
-      //   name: "David Chen",
-      //   title: "Social Media Influencer",
-      //   comment:
-      //     "As an influencer, I need to create content quickly. CreatiVision is my secret weapon for eye-catching visuals.",
-      //   rating: 4,
-      //   avatar: "/static/images/avatars/david-avatar.png",
-      // },
+      {
+        id: 5,
+        name: "Dheeraj Sudarshan",
+        title: "Social Media Influencer",
+        comment:
+          "As an influencer, I need to create content quickly. CreatiVision is my secret weapon for eye-catching visuals for my collabs with brands",
+        rating: 4,
+        avatar: "/static/images/avatars/dheeraj-avatar.png",
+      },
     ]);
 
     const testimonialsWrapper = ref(null);
