@@ -47,7 +47,10 @@ Due to time constraints during the hackathon, we acknowledge that the current ve
 
 We are committed to addressing these security concerns to provide a safe and reliable tool for our users.
 
-## 🖼️ Example Banner
+## 🖼️ Example Banners
+
+![image](https://github.com/user-attachments/assets/a07cf5d6-961a-454b-939c-13ca3270d2f1)
+
 
 
 
