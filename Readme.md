@@ -50,6 +50,8 @@ We are committed to addressing these security concerns to provide a safe and rel
 ## 🖼️ Example Banners
 
 ![image](https://github.com/user-attachments/assets/a07cf5d6-961a-454b-939c-13ca3270d2f1)
+![image](https://github.com/user-attachments/assets/737d0ccc-7529-4da6-b9d7-252635d98934)
+
 
 
 
