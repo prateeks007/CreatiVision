@@ -1,7 +1,7 @@
 Flask
 Pillow
 google-generativeai
-moviepy
+# moviepy
 grpcio
 google-cloud-aiplatform
 python-dotenv
