@@ -2,13 +2,13 @@ import logging
 from flask import render_template, request, jsonify
 from app import app
 from app.banner import generate_banner
-from app.video import generate_video
+# from app.video import generate_video
 from app.utils import allowed_file, save_uploaded_file
 from app.huggingfacetti import generate_and_save_banner
 
 @app.route('/')
 @app.route('/banner')
-@app.route('/video')
+# @app.route('/video')
 def index():
     return render_template('index.html')
 
