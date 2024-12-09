@@ -6,10 +6,9 @@ from app.banner import generate_banner
 from app.utils import allowed_file, save_uploaded_file
 from app.huggingfacetti import generate_and_save_banner
 
-@app.route('/')
-@app.route('/banner')
-# @app.route('/video')
-def index():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     return render_template('index.html')
 
 @app.route('/generate_banner', methods=['POST'])
