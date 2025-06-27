@@ -6,6 +6,9 @@ app.config['APP_NAME'] = 'CreatiVision'
 app.static_folder = 'static'
 app.template_folder = 'templates'
 
+# ✅ This line makes sure all your routes are registered
+from app import routes
+
 @app.route('/')
 def index():
     return render_template('index.html')

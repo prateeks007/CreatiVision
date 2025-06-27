@@ -1,96 +1,103 @@
 import os
-from google.cloud import vision
 from dotenv import load_dotenv
-import vertexai
-from vertexai.vision_models import ImageTextModel
 from PIL import Image
+import requests
+from google.api_core.exceptions import PermissionDenied
 
 load_dotenv()
 
-def analyze_image(path):
-    client = vision.ImageAnnotatorClient()
+def analyze_image(path, generator_type='imagen'):
+    warnings = []
 
-    with open(path, 'rb') as image_file:
-        content = image_file.read()
+    # Try Google Vision
+    try:
+        from google.cloud import vision
+        client = vision.ImageAnnotatorClient()
+        with open(path, 'rb') as image_file:
+            content = image_file.read()
+        image = vision.Image(content=content)
+        response = client.annotate_image({
+            'image': image,
+            'features': [
+                {'type_': vision.Feature.Type.LABEL_DETECTION},
+                {'type_': vision.Feature.Type.OBJECT_LOCALIZATION},
+                {'type_': vision.Feature.Type.IMAGE_PROPERTIES},
+                {'type_': vision.Feature.Type.TEXT_DETECTION},
+                {'type_': vision.Feature.Type.LOGO_DETECTION},
+            ]
+        })
+        labels = response.label_annotations
+        objects = response.localized_object_annotations
+        texts = response.text_annotations
+        logos = response.logo_annotations
 
-    image = vision.Image(content=content)
+        pil_img = Image.open(path)
+        colors = pil_img.getcolors(pil_img.size[0] * pil_img.size[1]) or [(0,(255,255,255))]
+        dominant = max(colors, key=lambda x: x[0])[1]
 
-    # Perform multiple detections
-    response = client.annotate_image({
-        'image': image,
-        'features': [
-            {'type_': vision.Feature.Type.LABEL_DETECTION},
-            {'type_': vision.Feature.Type.OBJECT_LOCALIZATION},
-            {'type_': vision.Feature.Type.IMAGE_PROPERTIES},
-            {'type_': vision.Feature.Type.TEXT_DETECTION},
-            {'type_': vision.Feature.Type.LOGO_DETECTION},
-        ]
-    })
+        return {
+            'description': ' '.join(l.description for l in labels[:3]),
+            'labels': [l.description for l in labels],
+            'objects': [o.name for o in objects],
+            'dominant_color': f"rgb{dominant}",
+            'text': ' '.join(t.description for t in texts[1:3]) if texts else '',
+            'logos': [logo.description for logo in logos],
+            'fallback_used': False,
+            'warnings': warnings
+        }
 
-    # Process the results
-    labels = response.label_annotations
-    objects = response.localized_object_annotations
-    colors = response.image_properties_annotation.dominant_colors.colors
-    texts = response.text_annotations
-    logos = response.logo_annotations
+    except Exception as err:
+        msg = "[Google Vision failed]: Billing might not be enabled or credentials are invalid."
+        print(msg, err)
+        warnings.append(msg)
 
-    # Initialize rgb with a default value
-    rgb = None
+    # Try Hugging Face captioning
+    try:
+        with open(path, 'rb') as f:
+            img_bytes = f.read()
+        resp = requests.post(
+            "https://api-inference.huggingface.co/models/nlpconnect/vit-gpt2-image-captioning",
+            headers={"Authorization": f"Bearer {os.getenv('HUGGING_FACE_API_KEY')}"},
+            files={"file": img_bytes},
+            timeout=60
+        )
+        if resp.status_code != 200:
+            raise RuntimeError(f"HF API error {resp.status_code}: {resp.text}")
+        data = resp.json()
+        caption = data[0]['generated_text'] if isinstance(data, list) else data.get('generated_text') or str(data)
 
-    # Add color analysis
-    image = Image.open(path)
-    colors = image.getcolors(image.size[0] * image.size[1])
-    if colors:
-        dominant_color = max(colors, key=lambda x: x[0])[1]
-        rgb = f"rgb({dominant_color[0]}, {dominant_color[1]}, {dominant_color[2]})"
+        pil_img = Image.open(path)
+        colors = pil_img.getcolors(pil_img.size[0] * pil_img.size[1]) or [(0,(255,255,255))]
+        dominant = max(colors, key=lambda x: x[0])[1]
 
-    # Construct a detailed description
-    description = "This image shows "
+        return {
+            'description': caption,
+            'labels': [caption],
+            'objects': [],
+            'dominant_color': f"rgb{dominant}",
+            'text': '',
+            'logos': [],
+            'fallback_used': False,
+            'warnings': warnings
+        }
 
-    # Add main objects
-    if objects:
-        object_names = [obj.name.lower() for obj in objects[:3]]
-        description += f"{', '.join(object_names)}. "
+    except Exception as e2:
+        msg = "[Hugging Face fallback failed]: No inference access or invalid API key."
+        print(msg, e2)
+        warnings.append(msg)
 
-    # Add label information
-    if labels:
-        label_names = [label.description.lower() for label in labels[:5]]
-        description += f"It contains or represents {', '.join(label_names)}. "
+    # Final fallback
+    fallback_msg = "[No providers available — using default prompt with user data]"
+    print(fallback_msg)
+    warnings.append(fallback_msg)
 
-    # Add text information
-    if texts[1:]:  # Skip the first one as it contains all text
-        text_content = ' '.join([text.description for text in texts[1:3]])
-        description += f"The image includes text: '{text_content}'. "
-
-    # Add logo information
-    if logos:
-        logo_names = [logo.description for logo in logos]
-        description += f"Logos detected: {', '.join(logo_names)}. "
-
-    # Return a structured result
     return {
-        'description': description,
-        'labels': [label.description for label in labels],
-        'objects': [obj.name for obj in objects],
-        'dominant_color': rgb,
-        'text': text_content if 'text_content' in locals() else '',
-        'logos': [logo.description for logo in logos]
+        'description': 'A cute cat on a sunny day',
+        'labels': ['cat', 'cute', 'sunny'],
+        'objects': [],
+        'dominant_color': 'rgb(255, 255, 255)',
+        'text': '',
+        'logos': [],
+        'fallback_used': True,
+        'warnings': warnings
     }
-
-# def run_test(image_path):
-#     detailed_description = analyze_image(image_path)
-    
-#     vertexai.init(project="gen-lang-client-0497992847", location="us-central1")
-#     model = ImageTextModel.from_pretrained("imagetext@001")
-#     source_img = Image.load_from_file(location=image_path)
-
-#     answers = model.ask_question(
-#         image=source_img,
-#         question="what is in the image? expand on the description of the image, thing like color of packaging, the product name etc.",
-#         number_of_results=1,
-#     )
-    
-#     return {
-#         'detailed_description': detailed_description,
-#         'answers': answers
-#     }
